@@ -30,13 +30,35 @@ README.md
  * 
  * 
  */
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.PrivateKey;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.Map.Entry;
+import javax.imageio.ImageIO;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.rendering.ImageType;
+import org.apache.pdfbox.rendering.PDFRenderer;
+
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfWriter; 
 
 public class PDFSign
 {	
@@ -45,6 +67,96 @@ public class PDFSign
 		sign( "D:/未加簽/630A5905141002310188UN.PDF","D:/加簽/630A5905141002310188.pdf");
 	}
  
+	
+	public static void dosign(String writeFileName,String writeSignFileName)//加簽
+	{
+		int pageSize =pdfToImgMerage(writeFileName);//pdf轉為圖片
+	    File[] listFile = new File[pageSize-1];			//
+	    
+	    for(int index=1;index<(pageSize);index++)
+	    {
+	 	    listFile[index-1]=(new File(writeFileName+"_"+index+".jpg"));
+	    }
+	    try {
+			imgMerageToPdf(listFile, new File(writeFileName+"TEMP.pdf"));
+			sign(writeFileName+"TEMP.pdf",writeSignFileName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+    
+	 public static int pdfToImgMerage(String writeFileName) {
+	        int count = 1; // Count variable used to separate each image file
+
+	        PDDocument doc = null;
+	        try {
+	            doc = PDDocument.load(new File(writeFileName));
+
+	            // Create a PDFRenderer to render the document pages
+	            PDFRenderer pdfRenderer = new PDFRenderer(doc);
+
+	            System.out.println("Please wait...");
+	            // Loop through each page and convert it to an image
+	            for (int i = 0; i < doc.getNumberOfPages(); i++) {
+	                BufferedImage bi = pdfRenderer.renderImageWithDPI(i, 170, ImageType.RGB);
+	                ImageIO.write(bi, "jpg", new File(writeFileName + "_" + (count++) + ".jpg"));
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (doc != null) {
+	                try {
+	                    doc.close();
+	                } catch (IOException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        }
+	        return count;
+	    }
+	
+	//圖片轉pdf
+	public static boolean imgMerageToPdf(File[] list, File file)throws Exception {
+		Map<Integer,File> mif = new TreeMap<Integer,File>();
+		for(int index=0;index<list.length;index++)
+		{
+			File f=list[index];
+			mif.put(index, f);
+		}
+		//2：拿第一個IMG的寬高為此PDF的格式
+		ByteArrayOutputStream baos = new ByteArrayOutputStream(2048*3);
+		InputStream is = new FileInputStream(mif.get(0));
+		for(int len;(len=is.read())!=-1;)
+			baos.write(len);
+		baos.flush();
+		Image image = Image.getInstance(baos.toByteArray());
+		float width = image.getWidth();
+		float height = image.getHeight();
+		baos.close();
+		Document document = new Document(new Rectangle(width,height));
+		PdfWriter pdfWr = PdfWriter.getInstance(document, new FileOutputStream(file));
+		document.open();
+		 
+		for(Entry<Integer,File> eif : mif.entrySet())
+		{
+			baos = new ByteArrayOutputStream(2048*3);
+			is = new FileInputStream(eif.getValue());
+			for(int len;(len=is.read())!=-1;)
+				baos.write(len);
+			baos.flush();
+			image = Image.getInstance(baos.toByteArray());
+			Image.getInstance(baos.toByteArray());
+			image.setAbsolutePosition(0.0f, 0.0f);
+			document.add(image);
+			document.newPage();
+			baos.close();
+		}
+		document.close();
+		pdfWr.close();
+		return true;
+	}
+
 	
 	public static void sign(String writeFileName,String writeSignFileName)//加簽
 	{
@@ -80,6 +192,4 @@ public class PDFSign
 				e.printStackTrace();
 			}
 	}
-	 
-	
 }
