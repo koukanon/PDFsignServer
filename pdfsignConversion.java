@@ -6,22 +6,22 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Affero General Public License along with this program.If not, see <https://www.gnu.org/licenses/>.
 
 
-´£¨Ñ¨Ï¥ÎJAVAªºµ{¦¡,¨Ï¥Îitextpdf 5.1.3¶i¦æPDFªº¥[Ã±¥\¯à, 
-itextpdf®M¥ó¬°HomePage http://www.itextpdf.com/ 
-ª`·NLicenses¬°GNU Affero General Public License v3 
+æä¾›ä½¿ç”¨JAVAçš„ç¨‹å¼,ä½¿ç”¨itextpdf 5.1.3é€²è¡ŒPDFçš„åŠ ç°½åŠŸèƒ½, 
+itextpdfå¥—ä»¶ç‚ºHomePage http://www.itextpdf.com/ 
+æ³¨æ„Licensesç‚ºGNU Affero General Public License v3 
 http://www.fsf.org/licensing/licenses/agpl-3.0.html
 
-ª©Åv©Ò¦³ (C) 2024 ¸gÀÙ³¡¼Ğ·ÇÀËÅç§½/±d¤j¸ê°TªÑ¥÷¦³­­¤½¥q
-¥»µ{¦¡¬O¦Û¥Ñ³nÅé¡G±z¥i¥H°ò©ó¦Û¥Ñ³nÅé°òª÷·|µo§Gªº
-GNU Affero³q¥Î¤½¦@³\¥iÃÒªº±ø´Ú¤U­«·s¤Àµo©M/©Î­×§ï¥¦¡A
-©ÎªÌ¥»³\¥iÃÒ²Ä¤Tª©©ÎªÌ¡]¥Ñ±z¿ï¾Ü¡^¥ô¦ó«áÄòª©¥»¡C    
+ç‰ˆæ¬Šæ‰€æœ‰ (C) 2024 ç¶“æ¿Ÿéƒ¨æ¨™æº–æª¢é©—å±€/åº·å¤§è³‡è¨Šè‚¡ä»½æœ‰é™å…¬å¸
+æœ¬ç¨‹å¼æ˜¯è‡ªç”±è»Ÿé«”ï¼šæ‚¨å¯ä»¥åŸºæ–¼è‡ªç”±è»Ÿé«”åŸºé‡‘æœƒç™¼ä½ˆçš„
+GNU Afferoé€šç”¨å…¬å…±è¨±å¯è­‰çš„æ¢æ¬¾ä¸‹é‡æ–°åˆ†ç™¼å’Œ/æˆ–ä¿®æ”¹å®ƒï¼Œ
+æˆ–è€…æœ¬è¨±å¯è­‰ç¬¬ä¸‰ç‰ˆæˆ–è€…ï¼ˆç”±æ‚¨é¸æ“‡ï¼‰ä»»ä½•å¾ŒçºŒç‰ˆæœ¬ã€‚    
 
-¤Àµo¥»µ{¦¡¬O§Æ±æ¥¦¯à¬£¤W¥Î³õ¡A¦ı¨S¦³¥ô¦ó¾á«O¡A
-¬Æ¦Ü¤]¨S¦³¹ï¨ä¾A¾P©Ê©Î¯S©w¥Øªº¾A¥Î©ÊªºÀq¥Ü¾á«O¡C
-§ó¦h²Ó¸`½Ğ°Ñ¨£¡§GNU Affero³q¥Î¤½¦@³\¥iÃÒ¡¨¡C    
+åˆ†ç™¼æœ¬ç¨‹å¼æ˜¯å¸Œæœ›å®ƒèƒ½æ´¾ä¸Šç”¨å ´ï¼Œä½†æ²’æœ‰ä»»ä½•æ“”ä¿ï¼Œ
+ç”šè‡³ä¹Ÿæ²’æœ‰å°å…¶é©éŠ·æ€§æˆ–ç‰¹å®šç›®çš„é©ç”¨æ€§çš„é»˜ç¤ºæ“”ä¿ã€‚
+æ›´å¤šç´°ç¯€è«‹åƒè¦‹â€œGNU Afferoé€šç”¨å…¬å…±è¨±å¯è­‰â€ã€‚    
 
-±zÀ³¸Ó¤w¦¬¨ì¥»µ{¦¡ÀHªşªºGNU Affero³q¥Î¤½¦@³\¥iÃÒªº°Æ¥»¡C
-¦p¥¼¦¬¨ì¡A½Ğ°Ñ¨£¡Ghttp://www.gnu.org/licenses/ ¡C
+æ‚¨æ‡‰è©²å·²æ”¶åˆ°æœ¬ç¨‹å¼éš¨é™„çš„GNU Afferoé€šç”¨å…¬å…±è¨±å¯è­‰çš„å‰¯æœ¬ã€‚
+å¦‚æœªæ”¶åˆ°ï¼Œè«‹åƒè¦‹ï¼šhttp://www.gnu.org/licenses/ ã€‚
 
 EMAIL   Kh.Li@bsmi.gov.tw
 
@@ -39,28 +39,28 @@ import java.time.LocalDateTime;
 
 public class pdfsignConversion {
 	public static void main(String[] args) throws IOException {
-        int port = 8000; // ¥i¦Û¦æ«ü©w¦øªA¾¹°ğ¤f
+        int port = 8000; // å¯è‡ªè¡ŒæŒ‡å®šä¼ºæœå™¨åŸ å£
         
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new UploadHandler());
-        server.setExecutor(null); // ¨Ï¥Î¹w³]ªº°õ¦æºü¦À
+        server.setExecutor(null); // ä½¿ç”¨é è¨­çš„åŸ·è¡Œç·’æ± 
         
-        System.out.println("¦øªA¾¹¤w±Ò°Ê¡A¥¿¦bºÊÅ¥°ğ¤f " + port + "...");
+        System.out.println("ä¼ºæœå™¨å·²å•Ÿå‹•ï¼Œæ­£åœ¨ç›£è½åŸ å£ " + port + "...");
         server.start();
     }
 
     static class UploadHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            // Àò¨ú½Ğ¨D¤èªk
+            // ç²å–è«‹æ±‚æ–¹æ³•
             String requestMethod = exchange.getRequestMethod();
             
             if (exchange.getRequestMethod().equalsIgnoreCase("get")) {
-                exchange.sendResponseHeaders(200, 0); // ¦pªG¬OGET´N¦^200
+                exchange.sendResponseHeaders(200, 0); // å¦‚æœæ˜¯GETå°±å›200
                 return;
             }
             if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
-                exchange.sendResponseHeaders(200, 0); // ¦pªG¬OOPTIONS´N¦^200
+                exchange.sendResponseHeaders(200, 0); // å¦‚æœæ˜¯OPTIONSå°±å›200
                 return;
             }
             
@@ -70,21 +70,21 @@ public class pdfsignConversion {
                 return;
             }
 	       	
-            if (requestMethod.equalsIgnoreCase("POST")) { // ¦pªG¬OPOST½Ğ¨D             
-            	String saveTempFile = "D:/TEMPConvertFilePath/";//¼È®É¦s©ñ¥Ø¿ı
+            if (requestMethod.equalsIgnoreCase("POST")) { // å¦‚æœæ˜¯POSTè«‹æ±‚             
+            	String saveTempFile = "D:/TEMPConvertFilePath/";//æš«æ™‚å­˜æ”¾ç›®éŒ„
             	{
                 	File file = new File( saveTempFile  );  
                     if(!file.exists())
                     	file.mkdirs();
             	}
-            	String SIGNTempFile = "D:/SIGNFilePath/";//¼È®É¦s©ñ¥Ø¿ı
+            	String SIGNTempFile = "D:/SIGNFilePath/";//æš«æ™‚å­˜æ”¾ç›®éŒ„
             	{
                 	File file = new File( SIGNTempFile  );  
                     if(!file.exists())
                     	file.mkdirs();
             	}
             	
-            	//¨Ï¥Î©I¥sIP©M®É¶¡«Ø¥ßªA°È
+            	//ä½¿ç”¨å‘¼å«IPå’Œæ™‚é–“å»ºç«‹æœå‹™
                 String clientIP = exchange.getRemoteAddress().getAddress().getHostAddress().replaceAll("\\.", "");
                 LocalDateTime now = LocalDateTime.now();
                 int year = now.getYear();
@@ -96,36 +96,36 @@ public class pdfsignConversion {
                 int millisecond = now.getNano() / 1000000;
                 String filename = clientIP+year+month+day+hour+minute+second+millisecond;
                 
-                // Àò¨ú¿é¤J¦ê¬y
+                // ç²å–è¼¸å…¥ä¸²æµ
                 InputStream input = exchange.getRequestBody();
-                // Àx¦s¿é¤J¦ê¬y¤¤ªºÀÉ®×
+                // å„²å­˜è¼¸å…¥ä¸²æµä¸­çš„æª”æ¡ˆ
                 saveFile(input,saveTempFile,filename);
                 
                 try {
-                	PDFSign.sign(saveTempFile+filename,SIGNTempFile+filename);                	  
+                	PDFSign.dosign(saveTempFile+filename,SIGNTempFile+filename);                	  
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				finally
 				{
-					File delData = new File(saveTempFile+filename); //§R°£­ì©l¶Ç¤JªºÀÉ®×
+					File delData = new File(saveTempFile+filename); //åˆªé™¤åŸå§‹å‚³å…¥çš„æª”æ¡ˆ
 					delData.delete();
 				}
-                // ¦^¶Ç¤@­ÓÀÉ®×
+                // å›å‚³ä¸€å€‹æª”æ¡ˆ
                 sendResponse(exchange, SIGNTempFile+filename);
                 {
-                	File delData = new File(SIGNTempFile+filename);//§R°£Âà´««áÀÉ®×
+                	File delData = new File(SIGNTempFile+filename);//åˆªé™¤è½‰æ›å¾Œæª”æ¡ˆ
     				delData.delete();
                 }
             } else {
-                // ¦pªG¤£¬OPOST½Ğ¨D¡A¦^¶Ç405 Method Not Allowed
+                // å¦‚æœä¸æ˜¯POSTè«‹æ±‚ï¼Œå›å‚³405 Method Not Allowed
                 exchange.sendResponseHeaders(405, -1);
             }
         }
 
         private void saveFile(InputStream input,String filePath,String filename) throws IOException {
-            // Àx¦sÀÉ®×ªº¸ô®|
+            // å„²å­˜æª”æ¡ˆçš„è·¯å¾‘
             OutputStream output = new FileOutputStream(filePath+filename);
             byte[] buffer = new byte[4096];
             int bytesRead;
@@ -150,7 +150,7 @@ public class pdfsignConversion {
                 fileInputStream.close();
                 output.close();
             } else {
-                exchange.sendResponseHeaders(404, -1); // ¦pªGÀÉ®×¤£¦s¦b¡A¦^¶Ç404 Not Found
+                exchange.sendResponseHeaders(404, -1); // å¦‚æœæª”æ¡ˆä¸å­˜åœ¨ï¼Œå›å‚³404 Not Found
             }
         }
     }
