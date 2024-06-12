@@ -49,12 +49,13 @@ import java.util.Map.Entry;
 import javax.imageio.ImageIO;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.rendering.ImageType;
-import org.apache.pdfbox.rendering.PDFRenderer;
 
+import com.itextpdf.text.pdf.PdfDate;
+import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfSignatureAppearance;
 import com.itextpdf.text.pdf.PdfStamper;
+import com.itextpdf.text.pdf.PdfString;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Rectangle;
@@ -64,6 +65,7 @@ public class PDFSign
 {	
 	public static void main(String[] args)
 	{
+		dosign("D:/未加簽/630A5905141002310188UN.PDF","D:/加簽/630A5905141002310188.pdf");
 		sign( "D:/未加簽/630A5905141002310188UN.PDF","D:/加簽/630A5905141002310188.pdf");
 	}
  
@@ -75,7 +77,7 @@ public class PDFSign
 	    
 	    for(int index=1;index<(pageSize);index++)
 	    {
-	 	    listFile[index-1]=(new File(writeFileName+"_"+index+".jpg"));
+	 	   listFile[index-1]=(new File(writeFileName+"_"+index+".jpg"));
 	    }
 	    try {
 			imgMerageToPdf(listFile, new File(writeFileName+"TEMP.pdf"));
@@ -86,35 +88,39 @@ public class PDFSign
 		}
 	}
     
-	 public static int pdfToImgMerage(String writeFileName) {
-	        int count = 1; // Count variable used to separate each image file
-
-	        PDDocument doc = null;
-	        try {
-	            doc = PDDocument.load(new File(writeFileName));
-
-	            // Create a PDFRenderer to render the document pages
-	            PDFRenderer pdfRenderer = new PDFRenderer(doc);
-
-	            System.out.println("Please wait...");
-	            // Loop through each page and convert it to an image
-	            for (int i = 0; i < doc.getNumberOfPages(); i++) {
-	                BufferedImage bi = pdfRenderer.renderImageWithDPI(i, 170, ImageType.RGB);
-	                ImageIO.write(bi, "jpg", new File(writeFileName + "_" + (count++) + ".jpg"));
-	            }
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        } finally {
-	            if (doc != null) {
-	                try {
-	                    doc.close();
-	                } catch (IOException e) {
-	                    e.printStackTrace();
-	                }
-	            }
-	        }
-	        return count;
-	    }
+	public static int  pdfToImgMerage(String writeFileName)
+	{
+		//將PDF檔案轉為JPG檔
+		int count=1; //count variable used to separate each image file
+		PDDocument doc;
+		try 
+		{
+			doc = PDDocument.load(new FileInputStream(writeFileName));
+		   //Get all pages from document and store them in a list
+			List<PDPage> pages=doc.getDocumentCatalog().getAllPages();
+			Iterator<PDPage> i= pages.iterator();
+			System.out.println("Please wait...");
+			while(i.hasNext())
+			{
+				PDPage page=i.next(); 
+				System.out.println("Please wait...");
+				BufferedImage bi = page.convertToImage(1,170);
+				ImageIO.write(bi, "jpg", new File(writeFileName+"_"+count+".jpg"));
+				count++;
+			}
+		} 
+		catch (FileNotFoundException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		catch (IOException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
 	
 	//圖片轉pdf
 	public static boolean imgMerageToPdf(File[] list, File file)throws Exception {
@@ -137,7 +143,12 @@ public class PDFSign
 		Document document = new Document(new Rectangle(width,height));
 		PdfWriter pdfWr = PdfWriter.getInstance(document, new FileOutputStream(file));
 		document.open();
-		 
+		  
+		pdfWr.getInfo().put(PdfName.PRODUCER, new PdfString("將此處替換為你的 PDF 生產者信息 This PDF was produced by the Bureau of Standards, Metrology and Inspection")); // 將此處替換為你的 PDF 生產者信息
+		pdfWr.getInfo().put(PdfName.CREATIONDATE, new PdfDate()); // 設置 PDF 文件的創建日期和時間
+		document.add(new com.itextpdf.text.Paragraph("將此處替換為你的 PDF 生產者信息 This PDF was produced and signed source code  https://github.com/koukanon/PDFsignServer"));
+
+        
 		for(Entry<Integer,File> eif : mif.entrySet())
 		{
 			baos = new ByteArrayOutputStream(2048*3);
@@ -156,7 +167,6 @@ public class PDFSign
 		pdfWr.close();
 		return true;
 	}
-
 	
 	public static void sign(String writeFileName,String writeSignFileName)//加簽
 	{
