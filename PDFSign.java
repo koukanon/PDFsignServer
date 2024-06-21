@@ -144,10 +144,6 @@ public class PDFSign
 		PdfWriter pdfWr = PdfWriter.getInstance(document, new FileOutputStream(file));
 		document.open();
 		  
-		pdfWr.getInfo().put(PdfName.PRODUCER, new PdfString("將此處替換為你的 PDF 生產者信息 This PDF was produced by the Bureau of Standards, Metrology and Inspection")); // 將此處替換為你的 PDF 生產者信息
-		pdfWr.getInfo().put(PdfName.CREATIONDATE, new PdfDate()); // 設置 PDF 文件的創建日期和時間
-		document.add(new com.itextpdf.text.Paragraph("將此處替換為你的 PDF 生產者信息 This PDF was produced and signed source code  https://github.com/koukanon/PDFsignServer"));
-
         
 		for(Entry<Integer,File> eif : mif.entrySet())
 		{
